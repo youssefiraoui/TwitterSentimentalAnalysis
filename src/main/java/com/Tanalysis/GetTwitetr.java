@@ -16,15 +16,7 @@ public class GetTwitetr {
 		Paging pg = new Paging();
 	    String userName = "SergiSamper";
 	    pg.setCount(200);
-	    ConfigurationBuilder cb = new ConfigurationBuilder();
-	    /*cb.setDebugEnabled(true)
-	      .setOAuthConsumerKey("jCuMds8hkjry8JV8JDEuDVH9o")
-	      .setOAuthConsumerSecret("psgKB7nb05kZqoD2ZFPrG78OqbObHySWUEhcLFcZ03qVMlsCwp")
-	      .setOAuthAccessToken("814999527451148288-PVho6BBmmcQbSVKOHBt3E5jbPJM6Krl")
-	      .setOAuthAccessTokenSecret("a30jMaE70P2kefPFOzrfGTlA06okUcifkjJB9g2JWq4Ih");
-	    cb.setHttpProxyHost("10.23.201.11").setHttpProxyPort(3128);*/
 	    Twitter twitter= new TwitterFactory().getSingleton();
-        //twitter4j.Twitter twitter=nn.getInstance();
         List<Status> stats=twitter.getHomeTimeline();
         
         for (Status status:stats ) {
