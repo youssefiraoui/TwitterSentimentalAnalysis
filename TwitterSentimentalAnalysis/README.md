@@ -1,1 +1,0 @@
-La plateforme permet d’analyser la popularité et le pourcentage de corrélation des tweets  . Connaître en temps réel le volume de conversations autour d’un hashtag ,le volume de mentions, l’engagement, la portée potentielle et  plusieurs données démographiques, créer des rapports personnalisés  
