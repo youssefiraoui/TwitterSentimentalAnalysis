@@ -2,9 +2,16 @@ package com.Tanalysis.entities;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class User implements Serializable{
 	
-	private long id;
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long id;
 	private String username;
 	private String email;
 	private String password;
@@ -20,10 +27,10 @@ public class User implements Serializable{
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getUsername() {

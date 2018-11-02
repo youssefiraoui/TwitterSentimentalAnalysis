@@ -2,9 +2,15 @@ package com.Tanalysis.Classifiers;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Result implements Serializable{
-	
-	private long id;
+	@Id
+	@GeneratedValue
+	private Long id;
 	private double tweetsPos;
 	private double tweetsNeg;
 	private double tweetsNeutral;
@@ -21,10 +27,10 @@ public class Result implements Serializable{
 		this.tweetsNeutral = tweetsNeutral;
 		this.numberTweetsAnalysis = numberTweetsAnalysis;
 	}
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public double getTweetsPos() {
