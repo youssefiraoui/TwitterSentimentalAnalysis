@@ -14,19 +14,18 @@ import twitter4j.TwitterFactory;
 import twitter4j.conf.ConfigurationBuilder;
 
 public class GetTwitetr {
-    public ArrayList<Tweet> getTweets() throws TwitterException {
-    	Paging pg = new Paging();
-	   // String userName = x;
+    public ArrayList<Tweet> getTweets(String name) throws TwitterException {
+    	Paging pg = new Paging(1, 200);
+	   String userName = name;       
 	    pg.setCount(200);
 	    Twitter twitter= new TwitterFactory().getSingleton();
-        List<Status> stats=twitter.getHomeTimeline();
+        List<Status> stats=twitter.getUserTimeline(userName, pg);///twitter.getHomeTimeline();
         ArrayList<Tweet> tweets = new ArrayList<>();
         
         for (Status status:stats ) {
         	
 			Tweet t = new Tweet();
-			
-			
+			          
 			t.setUser_id(String.valueOf(status.getUser().getId()));
 			t.setTweet(status.getText());
 			t.setUsername(status.getUser().getName());

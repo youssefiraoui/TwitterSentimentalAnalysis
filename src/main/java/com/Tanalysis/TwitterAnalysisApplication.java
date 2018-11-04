@@ -33,7 +33,7 @@ public class TwitterAnalysisApplication {
 		ArrayList<Tweet> tweets = null;
 		ConfigurableApplicationContext ctx = SpringApplication.run(TwitterAnalysisApplication.class, args);
 		TweetRepository repository  = ctx.getBean(TweetRepository.class);
-		tweets = twitetr.getTweets();
+		tweets = twitetr.getTweets("twitter");
 
 		 System.out.println("hhhhhhhhhhh"+ tweets.size());
 		 if(tweets != null)
