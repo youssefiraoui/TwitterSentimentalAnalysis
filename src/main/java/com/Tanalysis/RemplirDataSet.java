@@ -24,15 +24,16 @@ public class RemplirDataSet {
 				@SuppressWarnings("resource")
 				BufferedReader file = new BufferedReader(new FileReader(src));
 				while ((ligne = file.readLine()) != null){
-					String[] champ= ligne.split(";",1);
-					DataSet dataSet = new DataSet();
-					dataSet.setClasse(Integer.parseInt(champ[0]));
-					dataSet.setTweet(champ[1]);
+					String[] champ= ligne.split(";");
+					DataSet dataSet = new DataSet("0",1);
+				    dataSet.setClasse(Integer.parseInt(champ[0]));
+				    dataSet.setTweet(champ[1]);
 					dataSetRepository.add(dataSet);
 					//create(new Table.Thematic(champ[0],champ[1]));
-					//System.out.println(champ[0]+"  "+champ[1]);
-					return dataSetRepository;
+					System.out.println(champ[0]+" >>********************** <<"+champ[1]);
+					
 				}
+				return dataSetRepository;
 			} catch (FileNotFoundException e ) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

@@ -24,7 +24,6 @@ import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
 import twitter4j.conf.ConfigurationBuilder;
-
 @SpringBootApplication
 public class TwitterAnalysisApplication {
 	
@@ -43,16 +42,17 @@ public class TwitterAnalysisApplication {
 		TweetRepository repository  = ctx.getBean(TweetRepository.class);
 		DataSetRepository dataSetRepository  = ctx.getBean(DataSetRepository.class);
 		
-		
-		dataSets = RemplirDataSet.remplirDataSet("C:\\Users\\IRAOUI\\Nouveau dossier\\TwitterAnalysis\\src\\main\\resources\\static\\DataSet.csv");
+		/*
+		dataSets = RemplirDataSet.remplirDataSet("C:\\Users\\IRAOUI\\Nouveau dossier\\TwitterAnalysis\\src\\main\\resources\\static\\DataSet1.csv");
 		 if ( dataSets != null )
 		 {
 			 for (DataSet dataSet:dataSets)
 			 {
 				 dataSetRepository.save(dataSet);
-				 System.out.println("finiiiiiiiiiiiiiiiiiiiiiiiish 2 ");
 			 }
-		 }
+			 System.out.println("finiiiiiiiiiiiiiiiiiiiiiiiish 2 ");
+
+		 }*/
 		tweets = twitetr.getTweets("trump");
 		System.out.println("hhhhhhhhhhh"+ tweets.size());
 		 if(tweets != null)
