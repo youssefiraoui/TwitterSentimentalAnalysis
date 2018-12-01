@@ -26,8 +26,6 @@ public class User implements Serializable{
 	@OneToMany(mappedBy="user")
 	private Collection<SearchedWord> word;
 	
-	
-	
 	public Collection<SearchedWord> getWord() {
 		return word;
 	}
