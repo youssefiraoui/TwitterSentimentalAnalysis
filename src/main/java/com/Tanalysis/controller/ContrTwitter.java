@@ -18,7 +18,6 @@ import com.Tanalysis.repositories.TweetRepository;
 
 
 import twitter4j.TwitterException;
-@CrossOrigin()
 
 @RestController
 public class ContrTwitter {
@@ -29,6 +28,7 @@ public class ContrTwitter {
 	TweetRepository repository;
 	
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
+	@CrossOrigin(origins = "http://localhost:4200")
 	public Collection<Tweet> getTweetsBySearch(
 			@RequestParam(name = "search") String search)
 	{
