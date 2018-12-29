@@ -1,21 +1,61 @@
 package com.Tanalysis.entities;
 
 import java.io.Serializable;
+import java.util.Collection;
+import java.util.Set;
+import java.util.ArrayList;
+
+import javax.persistence.Column;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+import org.hibernate.annotations.ManyToAny;
+import org.springframework.context.annotation.Scope;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
-public class User implements Serializable{
-	
+@Table(name="User")
+@Scope("session")
+public class User implements Serializable ,UserDetails{
+	public static enum Role{ USER }
+	/**
+	 * Description of the property id.
+	 */
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	private String username;
+	@Column(unique = true)
 	private String email;
+	@JsonProperty(access = Access.WRITE_ONLY)
 	private String password;
+    private String  role;
+    /**
+	 * Description of the property full name.
+	 */
+	@OneToMany(mappedBy="user")
+	private Collection<SearchedWord> word;
+	@JsonIgnore
+	public Collection<SearchedWord> getWord() {
+		return word;
+	}
+	@JsonIgnore
 	
+	public void setWord(Collection<SearchedWord> word) {
+		this.word = word;
+	}
+
 	public User(String username, String email, String password) {
 		super();
 		this.username = username;
@@ -23,7 +63,7 @@ public class User implements Serializable{
 		this.password = password;
 	}
 	
-	public User() {
+public User() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -33,6 +73,11 @@ public class User implements Serializable{
 	public void setId(Long id) {
 		this.id = id;
 	}
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", username=" + username + ", email=" + email + ", password=" + password + "]";
+	}
+
 	public String getUsername() {
 		return username;
 	}
@@ -51,6 +96,46 @@ public class User implements Serializable{
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	@JsonIgnore
+	@Override
+	public boolean isEnabled() {
+		return true;
+	}
+
+	@JsonIgnore
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
+
+	@JsonIgnore
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
+
+	@JsonIgnore
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	@JsonIgnore
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		Collection<GrantedAuthority> authorities = new ArrayList<>();
+	    authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+		return authorities;
+	}
+
 	
 	
 

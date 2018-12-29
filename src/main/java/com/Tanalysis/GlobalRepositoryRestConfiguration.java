@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurerAdapter;
 
+import com.Tanalysis.entities.SearchedWord;
 import com.Tanalysis.entities.Tweet;
 
 
@@ -14,10 +15,10 @@ public class GlobalRepositoryRestConfiguration extends RepositoryRestConfigurerA
 public void configureRepositoryRestConfiguration(RepositoryRestConfiguration repo) {
 	 repo.setReturnBodyOnCreate(true);
 		repo.setReturnBodyOnUpdate(true);
-		repo.exposeIdsFor(Tweet.class);
+		repo.exposeIdsFor(Tweet.class,SearchedWord.class);
 		repo.getCorsRegistry()
 		.addMapping("/**")
-		.allowedOrigins("http://localhost:4200/")
+		.allowedOrigins("*")
 		.allowedHeaders("*")
 		.allowedMethods("OPTION","HEAD","GET","POST","PATCH");
 		
